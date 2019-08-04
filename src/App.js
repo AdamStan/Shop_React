@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import TopMenu from './topmenu/TopMenu'
 
-function App() {
-  return (
-    <div className="App">
-      <p> There will be application </p>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    fetch('http://localhost:8080/items/all')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({ items: data })
+    })
+    .catch(console.log)
+  }
+  
+  render(){
+    return (
+      <div className="App">
+        <TopMenu/>
+        <p> There will be application </p>
+      </div>
+    );
+  }
 }
 
 export default App;

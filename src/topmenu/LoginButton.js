@@ -12,3 +12,5 @@ class LoginButton extends React.Component {
         return (<button> Login </button>);
     }
 }
+
+export default LoginButton
