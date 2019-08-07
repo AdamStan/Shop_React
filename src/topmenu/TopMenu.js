@@ -7,17 +7,17 @@ class TopMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value : null,
+            updateFromUrl : props.updateFromUrl,
         }
     }
 
     render() {
         return (
         <ul class="top-menu">
-            <li> Shop_name </li>
-            <li> <CategoryButton categoryName="Games" address="http://localhost:8080/items/allGames"/></li>
-            <li> <CategoryButton categoryName="Books" address="http://localhost:8080/items/allBooks"/></li>
-            <li> <CategoryButton categoryName="Movies" address="http://localhost:8080/items/allMovies"/></li>
+            <li> <CategoryButton updateFromUrl={this.state.updateFromUrl} categoryName="Shop Name" address="http://localhost:8080/items/all"/> </li>
+            <li> <CategoryButton updateFromUrl={this.state.updateFromUrl} categoryName="Games" address="http://localhost:8080/items/allGames"/></li>
+            <li> <CategoryButton updateFromUrl={this.state.updateFromUrl} categoryName="Books" address="http://localhost:8080/items/allBooks"/></li>
+            <li> <CategoryButton updateFromUrl={this.state.updateFromUrl} categoryName="Movies" address="http://localhost:8080/items/allMovies"/></li>
             <li> <SearchButton/> </li>
             <li> <LoginButton/> </li>
         </ul>

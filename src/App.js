@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { items: [] };
+    this.getFromUrl = this.getFromUrl.bind(this)
   }
 
   componentDidMount() {
@@ -16,7 +17,6 @@ class App extends Component {
     .then((data) => {
       this.setState({ items: data })
       console.log(this.state.items)
-      this.forceUpdate()
     })
     .catch(console.log)
   }
@@ -24,11 +24,21 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <TopMenu/>
+        <TopMenu updateFromUrl={this.getFromUrl}/>
         <h2> In our offer: </h2>
         <Product products={this.state.items} />
       </div>
     );
+  }
+
+  getFromUrl(urlAddress){
+    fetch(urlAddress)
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({ items: data })
+      console.log(this.state.items)
+    })
+    .catch(console.log)
   }
 }
 
