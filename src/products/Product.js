@@ -9,8 +9,9 @@ class Product extends React.Component {
                 {this.props.products.map((product) =>(
                     <div claas="ProductCss">
                         <h3> Name: {product.name} </h3>
-                        <p> Price: {product.price} </p>
+                        <p> Price: {product.price.value} </p>
                         <p> Description: {product.description} </p>
+                        <p> Creator: {product.creator.name} </p>
                     </div>
                 ))}
             </div>
