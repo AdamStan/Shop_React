@@ -11,8 +11,7 @@ export default class Basket extends React.Component {
     }
 
     removeFromCart(event, product) {
-        event.preventDefault()
-        this.state.handleRemoveFromCart()
+        this.state.handleRemoveFromCart(event, product)
     }
 
     render(){
@@ -26,7 +25,7 @@ export default class Basket extends React.Component {
                         <ul>
                             {cartItems.map(item =>
                                 <li>
-                                    <b> {item.name} </b>
+                                    <b> {item.name} x{item.count} </b>
                                     <button className="btn btn-danger" 
                                             onClick={(e) => this.removeFromCart(e, item)}>X</button>
                                 </li>

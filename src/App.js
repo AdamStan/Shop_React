@@ -23,6 +23,9 @@ class App extends Component {
       console.log(this.state.items)
     })
     .catch(console.log)
+    if(localStorage.getItem('cartItems')){
+      this.setState( {itemsInBasket: JSON.parse(localStorage.getItem('cartItems'))} )
+    }
   }
   
   render(){
@@ -50,8 +53,12 @@ class App extends Component {
     .catch(console.log)
   }
 
-  handleRemoveFromCart(){
-
+  handleRemoveFromCart(e, product){
+    this.setState(state=>{
+      const itemsInBasket = state.itemsInBasket.filter(element => element.id !== product.id)
+      localStorage.setItem('cartItems', JSON.stringify(itemsInBasket))
+      return {itemsInBasket}
+    })
   }
 
   handleAddToCart(event, product) {
@@ -67,6 +74,7 @@ class App extends Component {
       if(!productAlreadyInCart){
         cartItems.push({...product, count:1})
       }
+      localStorage.setItem('cartItems', JSON.stringify(cartItems))
       return cartItems
     })
   }
