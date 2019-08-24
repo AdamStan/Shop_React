@@ -22,9 +22,9 @@ class SearchButton extends React.Component {
 
     render() {
         return (
-        <form onSubmit={this.updateUrl}>
-            <input placeholder="Search..." value={this.state.searchName} onChange={this.handleChange} />
-            <button type="submit"> Find </button>
+        <form className="form-inline my-2 my-lg-0" onSubmit={this.updateUrl}>
+            <input className="form-control mr-sm-2" placeholder="Search..." value={this.state.searchName} onChange={this.handleChange} />
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit"> Find </button>
         </form>
         );
     }

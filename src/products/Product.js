@@ -26,7 +26,7 @@ class Product extends React.Component {
                         <p> Price: {product.price} PLN </p>
                         <p> Description: {product.description} </p>
                         <p> Creator: {product.creator.name} </p>
-                        <button onClick={(e)=> this.addToCart(e, product)}> Add to cart </button>
+                        <button className="btn btn-success" onClick={(e)=> this.addToCart(e, product)}> Add to cart </button>
                     </div>
                 ))}
             </div>

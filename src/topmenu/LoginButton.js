@@ -9,7 +9,7 @@ class LoginButton extends React.Component {
     }
 
     render() {
-        return (<button> Login </button>);
+        return (<button className="btn btn-primary"> Login </button>);
     }
 }
 

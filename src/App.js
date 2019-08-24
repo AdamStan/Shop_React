@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import TopMenu from './topmenu/TopMenu'
 import Product from './products/Product'
@@ -27,8 +28,12 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <TopMenu updateFromUrl={this.getFromUrl} />
-        <Basket cartItems={this.state.itemsInBasket} handleRemoveFromCart={this.handleRemoveFromCart} />
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <TopMenu updateFromUrl={this.getFromUrl} />
+        </nav>
+        <div>
+          <Basket cartItems={this.state.itemsInBasket} handleRemoveFromCart={this.handleRemoveFromCart} />
+        </div>
         <h2> In our offer: </h2>
         <Product products={this.state.items} handleAddToCart={this.handleAddToCart}/>
       </div>

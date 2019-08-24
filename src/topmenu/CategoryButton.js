@@ -17,7 +17,7 @@ class CategoryButton extends React.Component {
     }
 
     render() {
-        return (<button onClick={this.updateUrl}> {this.props.categoryName} </button>);
+        return (<button className="btn btn-secondary" onClick={this.updateUrl}> {this.props.categoryName} </button>);
     }
 }
 
