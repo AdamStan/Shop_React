@@ -4,15 +4,17 @@ import './App.css';
 import TopMenu from './topmenu/TopMenu'
 import Product from './products/Product'
 import Basket from './shoppingcart/Basket'
+import MakeOrder from './shoppingcart/MakeOrder'
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { items: [], itemsInBasket: [] };
+    this.state = { items: [], itemsInBasket: [], showBasket: true, showCheckoutPage:false };
     this.getFromUrl = this.getFromUrl.bind(this)
     this.handleAddToCart = this.handleAddToCart.bind(this)
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
+    this.handleCheckoutOrder = this.handleCheckoutOrder.bind(this)
   }
 
   componentDidMount() {
@@ -34,11 +36,20 @@ class App extends Component {
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <TopMenu updateFromUrl={this.getFromUrl} />
         </nav>
-        <div>
-          <Basket cartItems={this.state.itemsInBasket} handleRemoveFromCart={this.handleRemoveFromCart} />
+        <div className="row">
+          <div className="col-8">
+            <h2> In our offer: </h2>
+            <Product products={this.state.items} handleAddToCart={this.handleAddToCart}/>
+          </div>
+          {this.state.showBasket && <div className="col-4">
+            <Basket cartItems={this.state.itemsInBasket} handleRemoveFromCart={this.handleRemoveFromCart} 
+                    handleCheckoutOrder={this.handleCheckoutOrder} />
+          </div>}
+          {this.state.showCheckoutPage && <div className="col-4">
+            <MakeOrder />
+          </div>}
         </div>
-        <h2> In our offer: </h2>
-        <Product products={this.state.items} handleAddToCart={this.handleAddToCart}/>
+        
       </div>
     );
   }
@@ -77,6 +88,11 @@ class App extends Component {
       localStorage.setItem('cartItems', JSON.stringify(cartItems))
       return cartItems
     })
+  }
+
+  handleCheckoutOrder(event) {
+    console.log("Here I am")
+    this.setState({ showBasket: false, showCheckoutPage: true })
   }
 
 }
