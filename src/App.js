@@ -15,6 +15,7 @@ class App extends Component {
     this.handleAddToCart = this.handleAddToCart.bind(this)
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
     this.handleCheckoutOrder = this.handleCheckoutOrder.bind(this)
+    this.handleMakeAnOrder = this.handleMakeAnOrder.bind(this)
   }
 
   componentDidMount() {
@@ -46,7 +47,7 @@ class App extends Component {
                     handleCheckoutOrder={this.handleCheckoutOrder} />
           </div>}
           {this.state.showCheckoutPage && <div className="col-4">
-            <MakeOrder />
+            <MakeOrder handleMakeAnOrder={this.handleMakeAnOrder}/>
           </div>}
         </div>
         
@@ -95,6 +96,22 @@ class App extends Component {
     this.setState({ showBasket: false, showCheckoutPage: true })
   }
 
+  handleMakeAnOrder(event, city, street, numberOfBuilding, postalCode) {
+    event.preventDefault()
+    fetch('http://localhost:8080/order/make', {
+        method: "POST",
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          city: city,
+          street: street,
+          numberOfBuilding: numberOfBuilding,
+          postalCode: postalCode,
+          itemsInBasket: this.state.itemsInBasket
+        })
+    })
+  }
 }
 
 export default App;
