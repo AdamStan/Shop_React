@@ -8,6 +8,7 @@ export default class MakeOrder extends React.Component {
             street: "",
             numberOfBuilding: "",
             postalCode: "",
+            email: "",
             handleMakeAnOrder: props.handleMakeAnOrder
         }
         this.onChange = this.onChange.bind(this)
@@ -44,9 +45,14 @@ export default class MakeOrder extends React.Component {
                                  onChange={this.onChange}/></div>
                         </div>
                         <div className="row">
+                            <div className="col"><label> Email: </label></div>
+                            <div className="col"><input type="text" name="email" value={this.state.email} 
+                                 onChange={this.onChange}/></div>
+                        </div>
+                        <div className="row">
                             <div className="col">
                                 <button onClick={(e) => this.state.handleMakeAnOrder(e, this.state.city, this.state.street, 
-                                                                                     this.state.numberOfBuilding, this.state.postalCode)} 
+                                                                                     this.state.numberOfBuilding, this.state.postalCode, this.state.email)} 
                                         className="btn btn-warning"> Submit checkout </button>
                             </div>
                             <div className="col">

@@ -96,7 +96,7 @@ class App extends Component {
     this.setState({ showBasket: false, showCheckoutPage: true })
   }
 
-  handleMakeAnOrder(event, city, street, numberOfBuilding, postalCode) {
+  handleMakeAnOrder(event, city, street, numberOfBuilding, postalCode, email) {
     event.preventDefault()
     fetch('http://localhost:8080/order/make', {
         method: "POST",
@@ -108,9 +108,17 @@ class App extends Component {
           street: street,
           numberOfBuilding: numberOfBuilding,
           postalCode: postalCode,
+          email: email,
           itemsInBasket: this.state.itemsInBasket
         })
     })
+    localStorage.setItem('cartItems', JSON.stringify([]))
+    this.setState({
+      showBasket: true,
+      showCheckoutPage: false,
+      itemsInBasket: []
+    })
+    alert("Your order was created!")
   }
 }
 
